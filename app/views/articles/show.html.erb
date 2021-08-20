@@ -2,6 +2,8 @@
 
 <p><%= @article.body %></p>
 
+<p>Views: <%= @article.views %></p>
+
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
   <li><%= link_to "Destroy", article_path(@article),
