@@ -1,0 +1,10 @@
+ru:
+  create_new_article: "Создать новую статью"
+  articles_head: "Статьи"
+  edit_article: "Редактировать статью"
+  new_article: "Новая статья"
+  edit: "редактировать"
+  destroy: "удалить"
+  are_you_sure: "вы уверены?"
+  error_on_creating_new_post: "Ошибка при создании новой статьи"
+  article_succesfuly_created: "Статья успешно создана"

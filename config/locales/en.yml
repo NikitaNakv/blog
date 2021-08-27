@@ -30,4 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  create_new_article: "Create New Article"
+  articles_head: "Articles"
+  edit_article: "Edit article"
+  new_article: "New article"
+  edit: "edit"
+  destroy: "destroy"
+  are_you_sure: "are you sure?"
+  error_on_creating_new_post: "Error acquired while creating new article"
+  article_succesfuly_created: "Article succesfuly created"

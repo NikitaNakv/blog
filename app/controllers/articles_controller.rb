@@ -4,7 +4,10 @@
 class ArticlesController < ApplicationController
   skip_before_action :verify_authenticity_token
   around_action :log_req_info, only: [:show]
+  around_action :switch_locale
   after_action :inc_view, only: [:show]
+
+  #  layout "layouts/_article_list_layout", only: [:index]
 
   def index
     @articles = Article.all
@@ -12,19 +15,17 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-
     respond_to do |format|
       format.html
-      format.xml { render xml: @article }
+      format.xml { render xml: @article.to_xml }
       format.pdf do
         pdf = Prawn::Document.new
         pdf.markup("<h1>#{@article.title}</h1>\n<p>#{@article.body}</p>\n<p>views: #{@article.views}</p>")
-
         send_data pdf.render, type: "application/pdf", disposition: "inline"
       end
     end
   end
-  
+
   def new
     @article = Article.new
   end
@@ -34,10 +35,10 @@ class ArticlesController < ApplicationController
 
     if @article.save
       redirect_to @article
-      flash[:notice] = "Post successfully created"
+      flash[:notice] = t(:article_succesfuly_created)
     else
       render :new
-      flash[:errors] = "Error acquired while creating a new post"
+      flash[:errors] = t(:error_on_creating_new_post)
     end
   end
 
@@ -62,10 +63,15 @@ class ArticlesController < ApplicationController
     redirect_to root_path
   end
 
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
+
   private
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :locale)
   end
 
   def inc_view
