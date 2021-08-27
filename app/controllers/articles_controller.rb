@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   around_action :switch_locale
   after_action :inc_view, only: [:show]
 
-  #  layout "layouts/_article_list_layout", only: [:index]
+  rescue_from "ActiveRecord::RecordNotFound", with: :show_not_found
 
   def index
     @articles = Article.all
@@ -66,6 +66,10 @@ class ArticlesController < ApplicationController
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
     I18n.with_locale(locale, &action)
+  end
+
+  def show_not_found
+    render 'not_found'
   end
 
   private
