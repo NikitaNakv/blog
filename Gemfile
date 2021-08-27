@@ -29,7 +29,7 @@ gem "jbuilder", "~> 2.7"
 # XML builder
 gem "builder"
 # debugger
-gem 'pry'
+gem "pry"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

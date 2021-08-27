@@ -69,7 +69,7 @@ class ArticlesController < ApplicationController
   end
 
   def show_not_found
-    render 'not_found'
+    render "not_found"
   end
 
   private
