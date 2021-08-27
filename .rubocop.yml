@@ -1,5 +1,14 @@
+require: rubocop-rails
+
 AllCops:
   TargetRubyVersion: 3.0
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
 
 Style/StringLiterals:
   Enabled: true

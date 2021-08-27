@@ -5,6 +5,7 @@
     <% article.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
+    
   </div>
 
   <div>
@@ -16,6 +17,10 @@
   </div>
 
   <div>
+    <% if flash[:errors] %>
+      <div class="errors"><%= flash[:errors] %></div>
+    <% end %>
+
     <%= form.submit %>
   </div>
 <% end %>

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# article entity
 class Article < ApplicationRecord
   after_initialize :default_values
 
@@ -6,12 +9,12 @@ class Article < ApplicationRecord
   validates :views, presence: true
 
   def to_s
-    s = "Title: #{self.title},\nBody: #{self.body},\nViews: #{self.views}"    
+    "Title: #{title},\nBody: #{body},\nViews: #{views}"
   end
 
   private
-    def default_values
-      self.views ||= 0
-    end
 
+  def default_values
+    self.views ||= 0
+  end
 end
